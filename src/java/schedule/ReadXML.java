@@ -5,6 +5,7 @@
  */
 package schedule;
 import entity.CurrencyRate;
+import facades.CurrencyFacade;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,6 +27,7 @@ public class ReadXML extends DefaultHandler {
     
     private List<CurrencyRate> todaysRates;
     private Date today;
+    private CurrencyFacade cf;
     
     public ReadXML(){
         today = new Date();
@@ -75,6 +77,9 @@ public class ReadXML extends DefaultHandler {
             URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
             xr.parse(new InputSource(url.openStream()));
             for (CurrencyRate rate : reader.getTodaysRates()) {
+                CurrencyFacade cf = new CurrencyFacade();
+                cf.addCurrencyRate(rate);
+
                 System.out.println(rate.toString());
             }
         } catch (SAXException | IOException e) {
