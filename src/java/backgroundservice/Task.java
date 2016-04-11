@@ -10,6 +10,8 @@ import facades.CurrencyFacade;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.xml.sax.InputSource;
@@ -23,8 +25,10 @@ import org.xml.sax.helpers.XMLReaderFactory;
 public class Task implements Runnable {
     
     private CurrencyFacade cf;
+    private List<CurrencyRate> newRates;
     
     public Task(CurrencyFacade cf){
+        newRates = new ArrayList();
         this.cf = cf;
     }
 
@@ -38,7 +42,9 @@ public class Task implements Runnable {
             xr.parse(new InputSource(url.openStream()));
             for (CurrencyRate rate : reader.getTodaysRates()) {
                 cf.addCurrencyRate(rate);
+                newRates.add(rate);
             }
+            cf.setNewCache(newRates);
         } catch (MalformedURLException ex) {
             Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

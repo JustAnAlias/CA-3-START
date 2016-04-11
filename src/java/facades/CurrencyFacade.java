@@ -22,9 +22,11 @@ import openshift_deploy.DeploymentConfiguration;
 public class CurrencyFacade {
     
     private EntityManagerFactory emf;
+    private List<CurrencyRate> cache;
 
     public CurrencyFacade() {
         emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
+        cache = new ArrayList();
     }
 
     private EntityManager getEntityManager() {
@@ -66,5 +68,13 @@ public class CurrencyFacade {
             em.close();
         }
         return rates;
+    }
+    
+    public List<CurrencyRate> getCache(){
+        return cache;
+    }
+    
+    public void setNewCache(List<CurrencyRate> newRates){
+        cache = newRates;
     }
 }
