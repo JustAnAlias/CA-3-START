@@ -16,7 +16,7 @@
     <b>Industry Description:</b>   {{output.industrydesc}}<br>
     <br>
     <div style="width: 25em ; border-left: 12em">
-    <b>Units:</b> <uib-accordion>
+    <uib-accordion>
         <uib-accordion-group ng-repeat="unit in output.productionunits" >
             <uib-accordion-heading>
                 {{unit.name}}
