@@ -40,7 +40,6 @@ public class AdminApi {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("users")
     public Response getTodaysUsers(){
-        
         List<entity.User> users = uf.getAllUsers();
         JsonArray usersJson = new JsonArray();
         for (entity.User u : users) {
@@ -54,7 +53,6 @@ public class AdminApi {
     @Path("users/{id}")
     public Response deleteUsers(@PathParam("id") String id){
         uf.deleteUserByID(id);
-        
         return Response.status(Response.Status.OK).build();
     }
     

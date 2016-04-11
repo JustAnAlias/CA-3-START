@@ -66,11 +66,14 @@ public class UserFacade implements IUserFacade {
 
     public List<User> getAllUsers(){
         EntityManager em = getEntityManager();
+        List<User> users = new ArrayList<>();
         try{
-            return em.createQuery("select u from User u").getResultList();        
+            Query query = em.createQuery("SELECT u FROM User u");
+            users = query.getResultList();
         }finally{
             em.close();
         }
+        return users;
     }
 
     public User deleteUserByID(String id){
