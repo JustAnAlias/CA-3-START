@@ -65,7 +65,7 @@ public class UserFacade implements IUserFacade {
   }
 
     public List<User> getAllUsers(){
-        EntityManager em = getEntityManager();
+        EntityManager em = emf.createEntityManager();
         List<User> users = new ArrayList<>();
         try{
             Query query = em.createQuery("SELECT u FROM User u");
