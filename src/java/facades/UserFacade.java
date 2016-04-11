@@ -2,12 +2,14 @@ package facades;
 
 import security.IUserFacade;
 import entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import openshift_deploy.DeploymentConfiguration;
 import security.IUser;
 import security.PasswordStorage;
@@ -18,6 +20,10 @@ public class UserFacade implements IUserFacade {
 
   public UserFacade() {
 
+  }
+
+  private EntityManager getEntityManager() {
+    return emf.createEntityManager();
   }
 
   @Override
@@ -57,5 +63,30 @@ public class UserFacade implements IUserFacade {
       em.close();
     }
   }
+
+    public List<User> getAllUsers(){
+        EntityManager em = getEntityManager();
+        try{
+            return em.createQuery("select u from User u").getResultList();        
+        }finally{
+            em.close();
+        }
+    }
+
+    public User deleteUserByID(String id){
+        EntityManager em = getEntityManager();
+        User user = null;
+        try{
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :id");
+            query.setParameter("id", Integer.parseInt(id));
+            user = (User) query.getSingleResult();
+            em.getTransaction().begin();
+            em.remove(user);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return user;
+    }
 
 }

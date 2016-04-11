@@ -25,6 +25,7 @@
     <script src="app/view2/view2.js"></script>
     <script src="app/view3/view3.js"></script>
     <script src="app/view4/view4.js"></script>
+    <script src="app/admin/admin.js"></script>
     <script src="app/register/register.js"></script> 
     <script src="app/components/auth.js"></script>
     <script src="app/components/filters.js"></script>
@@ -58,7 +59,7 @@
               <li><a href="#/view2">Documentation</a></li>
               <li ng-show="isAuthenticated"><a href="#/view3">Company Info</a></li>
               <li ng-show="isAuthenticated"><a href="#/view4">Exchange Rate Info</a></li>
-              <li ng-show="isAdmin"><a href="#/view4">All Users</a></li>
+              <li ng-show="isAdmin"><a href="#/admin">All Users</a></li>
             </ul>
             <div>
             <form class="navbar-form navbar-right" role="form" ng-show="!isAuthenticated" ng-submit="login()"  >

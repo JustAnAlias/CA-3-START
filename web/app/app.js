@@ -13,6 +13,7 @@ angular.module('myApp', [
   'myApp.view3',
   'myApp.view4',
   'myApp.register',
+  'myApp.admin',
   // Components
   'myApp.filters',
   'myApp.directives',

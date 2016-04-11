@@ -1,0 +1,17 @@
+<h3>All users</h3>
+<table class="table" ng-controller="AdminCtrl">
+    <thead>
+        <tr>
+          <th>Name<th/>  
+           
+           </tr>   
+          </thead>
+          <tbody>
+              <tr ng-repeat="user in users">   
+                  <th>{{user.userName}}</th>
+                  <th><button ng-click="deleteUser(user.id)" >Delete</button></th>              
+             </tr> 
+          </tbody>  
+        
+    
+</table>
