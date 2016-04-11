@@ -5,10 +5,14 @@ package openshift_deploy;
 
 import entity.Role;
 import entity.User;
+import facades.CurrencyFacade;
 import facades.UserFacade;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -19,14 +23,16 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.ws.rs.core.Context;
+import schedule.Task;
 import security.PasswordStorage;
 
 @WebListener
 public class DeploymentConfiguration implements ServletContextListener {
 
   public static String PU_NAME = "PU-Local";
+  private ScheduledExecutorService scheduler;
 
-  @Override
+    @Override
   public void contextInitialized(ServletContextEvent sce) {
       //If we are testing, then this:
      if(sce.getServletContext().getInitParameter("testEnv")!=null){
@@ -58,6 +64,10 @@ public class DeploymentConfiguration implements ServletContextListener {
       admin.AddRole(adminRole);
       both.AddRole(userRole);
       both.AddRole(adminRole);
+
+        //scheduled task
+      scheduler = Executors.newSingleThreadScheduledExecutor();
+      scheduler.scheduleAtFixedRate(new Task(new CurrencyFacade()), 0, 24, TimeUnit.HOURS);
 
       try {
         em.getTransaction().begin();
