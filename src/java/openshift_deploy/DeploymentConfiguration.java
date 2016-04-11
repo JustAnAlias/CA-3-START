@@ -23,7 +23,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.ws.rs.core.Context;
-import schedule.Task;
+import backgroundservice.Task;
 import security.PasswordStorage;
 
 @WebListener
