@@ -1,5 +1,44 @@
 <h3>This is the partial for view 3.</h3>
-<div>
-  <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
-  <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
+
+
+<div  ng-controller="View3Ctrl">
+    <form role="form" ng-submit="getCompany()" >
+        CVR:<br>
+        <input type="text" name="cvr" ng-model="cvr">
+        <button type="submit" class="btn btn-success">Search</button>
+
+
+
+    </form>
+    <b>Name:</b>                   {{output.name}} <br>
+    <b>Established:</b>            {{output.startdate}}<br>
+    <b>Employees:</b>              {{output.employees}}<br>
+    <b>Industry Description:</b>   {{output.industrydesc}}<br>
+    <br>
+    <div style="width: 25em ; border-left: 12em">
+    <b>Units:</b> <uib-accordion>
+        <uib-accordion-group ng-repeat="unit in output.productionunits" >
+            <uib-accordion-heading>
+                {{unit.name}}
+            </uib-accordion-heading>
+            <ul>
+                <li><b>PNO:</b> {{unit.pno}} </li>
+                <li><b>Address:</b> {{unit.address}} </li>
+                <li><b>Zip:</b> {{unit.zipcode}} </li>
+                <li><b>City:</b> {{unit.city}} </li>
+                <li><b>Phone:</b> {{unit.phone}} </li>
+                <li><b>Email:</b> {{unit.email}} </li>
+                <li><b>Established:</b> {{unit.startadte}} </li>
+                <li><b>Employees:</b> {{unit.empolyees}} </li>
+                <li><b>Email:</b> {{unit.email}} </li>
+      
+                
+                    
+               
+                </ul>
+        </uib-accordion-group>
+    </uib-accordion>
+</div>
+
+
 </div>
