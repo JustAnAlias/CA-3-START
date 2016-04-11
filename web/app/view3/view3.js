@@ -23,6 +23,7 @@ angular.module('myApp.view3', ['ngRoute'])
         return $http({
             method: 'GET',
             url: 'http://cvrapi.dk/api?search=' + $scope.cvr + '&country=DK',
+            skipAuthorization: true,
             contentType: "application/json"
         }).success(function(data, status, headers, config) {
             $scope.output = data;
