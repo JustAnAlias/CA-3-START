@@ -41,6 +41,7 @@ public class Task implements Runnable {
             URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
             xr.parse(new InputSource(url.openStream()));
             for (CurrencyRate rate : reader.getTodaysRates()) {
+//                System.out.println("________________________" + rate.getDesc());
                 cf.addCurrencyRate(rate);
                 newRates.add(rate);
             }

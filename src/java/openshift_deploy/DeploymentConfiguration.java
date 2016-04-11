@@ -30,7 +30,7 @@ import security.PasswordStorage;
 public class DeploymentConfiguration implements ServletContextListener {
 
   public static String PU_NAME = "PU-Local";
-  private ScheduledExecutorService scheduler;
+//  private ScheduledExecutorService scheduler;
 
     @Override
   public void contextInitialized(ServletContextEvent sce) {
@@ -66,8 +66,8 @@ public class DeploymentConfiguration implements ServletContextListener {
       both.AddRole(adminRole);
 
         //scheduled task
-      scheduler = Executors.newSingleThreadScheduledExecutor();
-      scheduler.scheduleAtFixedRate(new Task(new CurrencyFacade()), 0, 24, TimeUnit.HOURS);
+//      scheduler = Executors.newSingleThreadScheduledExecutor();
+//      scheduler.scheduleAtFixedRate(new Task(new CurrencyFacade()), 0, 24, TimeUnit.HOURS);
 
       try {
         em.getTransaction().begin();
