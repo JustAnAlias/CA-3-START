@@ -77,4 +77,25 @@ public class CurrencyFacade {
     public void setNewCache(List<CurrencyRate> newRates){
         cache = newRates;
     }
+    
+    public double convertCurrency(double amount, String from, String to){
+        double res = 0;
+        CurrencyRate fromCurrency = null;
+        CurrencyRate toCurrency = null;
+        for (int i = 0; i < cache.size(); i++) {
+            if (cache.get(i).getCode()==from){
+                fromCurrency = cache.get(i);
+            }
+            if (cache.get(i).getCode()==to){
+                toCurrency = cache.get(i);
+            }
+        }
+        double inReferenceCurrency = toReferenceCurrency(amount, fromCurrency.getRate());
+        return inReferenceCurrency * toCurrency.getRate();
+    }
+    
+    public double toReferenceCurrency(double amount, double rate){
+        double result = amount * rate;
+        return result;
+    }
 }
