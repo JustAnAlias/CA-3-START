@@ -3,7 +3,7 @@
         <option ng-repeat="rate in rates">{{rate.desc}}</option>
     </select>
     <select name="to_currency" ng-model="toCurrency">
-        <option ng-repeat="rate in rates">{{rate.desc}}</option>
+        <option ng-repeat="rate in rates">{{rate.code}}</option>
     </select>
     <input type="text" ng-model="amount">
     {{test}}<br>

@@ -4,35 +4,40 @@
 
   angular.module('myApp.factories', []).
   factory('CurrencyFactory', function ($http) {
-      var factory = {};
-      factory.rates = [];
+      
+      var rates;
+      var status;
       $http({
         method: "GET",
         url: "api/currency/rates"
     })
             .success(function(data, status, headers, config){
-                factory.rates = data;
-                        console.log("status of the request from the factory is: " + status);
-                        console.log("get method was successful, printing data now:");
-                        console.log(data);
+                rates = data;
                 status = true;
             })
             .error(function(){
                 status = "Connection failed";
             });
-      factory.info = "This is the CurrencyFactory";
-      factory.getInfo = function(){
-          return factory.info;
+      var info = "This is the CurrencyFactory";
+      var getInfo = function(){
+          return info;
       };
-      factory.getRates = function(){
-          return factory.rates;
+       var getRates = function(){
+          return rates;
       };
-      factory.convertCurrency = function(amount, from, to){
-          var curr = factory.getRates();
+      var convertCurrency = function(amount, from, to){
+          var curr = getRates();
                 console.log(curr);
       };
     
-    return factory;
+    return {
+        rates: rates,
+        status: status,
+        info: info,
+        getInfo: getInfo,
+        getRates: getRates,
+        convertCurrency: convertCurrency
+    };
   })
   
   .factory('InfoFactory', function () {

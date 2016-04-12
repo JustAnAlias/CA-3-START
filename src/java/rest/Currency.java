@@ -42,7 +42,7 @@ public class Currency {
     @Path("dailyrates")
     public Response getTodaysRates(){
         Calendar yesterday = Calendar.getInstance(TimeZone.getTimeZone("Europe/Copenhagen"));
-        yesterday.add(Calendar.DATE, 0);
+        yesterday.add(Calendar.DATE, -1);
         List<CurrencyRate> rates = cf.getCurrencyRatesByDate(yesterday.getTime());
         JsonArray ratesJson = new JsonArray();
         for (CurrencyRate rate : rates) {

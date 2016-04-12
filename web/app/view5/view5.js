@@ -16,8 +16,7 @@ angular.module('myApp.view5', ['ngRoute'])
     $scope.status = CurrencyFactory.status;
     $scope.rates = CurrencyFactory.getRates();
     $scope.info = CurrencyFactory.getInfo();
-                console.log("printing rates here:");
-                console.log($scope.rates);
+                console.log("printing rates here: " + $scope.rates);            
     $scope.convert = function(amount, from, to){
                     
     };
