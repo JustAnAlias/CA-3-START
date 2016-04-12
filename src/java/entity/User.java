@@ -50,6 +50,10 @@ public class User implements Serializable, IUser {
     roles.add(role);
     role.addUser(this);
   }
+  
+    public void RemoveRoles(){
+    roles.clear();
+    }
     
   public List<Role> getRoles() {
    return roles;

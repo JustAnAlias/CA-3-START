@@ -19,11 +19,12 @@ angular.module('myApp.admin', ['ngRoute'])
         })
         .error(function(data, status, headers, config) {
         });
-    $scope.deleteUser = function(id) {
-        $http.delete('api/admin/users/' + id)
+
+        $scope.deleteUser = function(userName) {
+        $http.delete('api/admin/users/' + userName)
             .success(function(data, status, headers, config) {
                 for (var i = 0; i < $scope.users.length; i++) {
-                    if (id === $scope.users[i].id) {
+                    if (userName === $scope.users[i].userName) {
                         $scope.users.splice(i, 1);
 
                     }
