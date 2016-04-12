@@ -83,10 +83,10 @@ public class CurrencyFacade {
         CurrencyRate fromCurrency = null;
         CurrencyRate toCurrency = null;
         for (int i = 0; i < cache.size(); i++) {
-            if (cache.get(i).getCode()==from){
+            if (cache.get(i).getCode().equals(from)){
                 fromCurrency = cache.get(i);
             }
-            if (cache.get(i).getCode()==to){
+            if (cache.get(i).getCode().equals(to)){
                 toCurrency = cache.get(i);
             }
         }
