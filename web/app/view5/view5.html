@@ -1,11 +1,9 @@
 <div>
     <select name="from_currency" ng-model="fromCurrency">
-        <option ng-repeat="rate in rates">{{rate.desc}}</option>
+        <option ng-repeat="currency in currencies">{{currency.description}}</option>
     </select>
     <select name="to_currency" ng-model="toCurrency">
-        <option ng-repeat="rate in rates">{{rate.code}}</option>
-    </select>
-    <input type="text" ng-model="amount">
-    {{test}}<br>
-    {{info}}
+        <option ng-repeat="currency in currencies">{{currency.description}}</option>
+    </select><br>
+    <input type="text" ng-model="amount"><input type="text" ng-model="calculatedValue" disabled="true">
 </div>
