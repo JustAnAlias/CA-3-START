@@ -9,15 +9,16 @@ angular.module('myApp.view5', ['ngRoute'])
   });
 }])
 
-.controller('View5Ctrl', ['$http', '$scope', 'currencyFactory', function($http,$scope, currencyFactory) {
-    $scope.fromCurrency = "";
-    $scope.toCurrency = "";
-    $scope.amount = 0;
+.controller('View5Ctrl', ['$http', '$scope', 'CurrencyFactory', function($http,$scope,CurrencyFactory) {
+    $scope.test = "this is a test";
     $scope.rates = [];
     $scope.status = "Connecting...";
-    $scope.status = currencyFactory.status;
-    $scope.rates = currencyFactory.getRates();
+    $scope.status = CurrencyFactory.status;
+    $scope.rates = CurrencyFactory.getRates();
+    $scope.info = CurrencyFactory.getInfo();
+                console.log("printing rates here:");
+                console.log($scope.rates);
     $scope.convert = function(amount, from, to){
-                    console.log(rates);
+                    
     };
 }]);

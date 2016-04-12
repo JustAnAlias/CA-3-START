@@ -50,4 +50,20 @@ public class Currency {
         }
         return Response.status(Response.Status.OK).entity(ratesJson.toString()).type(MediaType.APPLICATION_JSON).build();
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("cache")
+    public Response getCache(){
+        String ratesJson = gson.toJson(cf.getCache());
+        return Response.status(Response.Status.OK).entity(ratesJson).type(MediaType.APPLICATION_JSON).build();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("rates")
+    public Response getRates(){
+        String ratesJson = gson.toJson(cf.getAllCurrencyRates());
+        return Response.status(Response.Status.OK).entity(ratesJson).type(MediaType.APPLICATION_JSON).build();
+    }
 }

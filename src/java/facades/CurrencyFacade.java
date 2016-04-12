@@ -5,6 +5,7 @@
  */
 package facades;
 
+import backgroundservice.Task;
 import entity.CurrencyRate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,6 +72,11 @@ public class CurrencyFacade {
     }
     
     public List<CurrencyRate> getCache(){
+        if (cache.size()<1){
+            Task task = new Task(this);
+            Thread t = new Thread(task);
+            t.start();
+        }
         return cache;
     }
     
