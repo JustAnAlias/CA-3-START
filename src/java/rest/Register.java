@@ -1,13 +1,14 @@
 package rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nimbusds.jose.JOSEException;
+import entity.Role;
+import facades.UserFacade;
 import java.util.List;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -17,17 +18,23 @@ import javax.ws.rs.core.Response;
 
 @Path("register")
 public class Register {
-  
+    UserFacade uf;
+    Gson gson;
+    public Register(){
+        gson = new GsonBuilder().setPrettyPrinting().create();
+        uf = new UserFacade();
+    }
+    
+    
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response register(String jsonString) throws JOSEException {
     try {
-      JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
-      String username = json.get("username").getAsString();
-      String password = json.get("password").getAsString();
-      JsonObject responseJson = new JsonObject();
-      List<String> roles;
+        entity.User user = gson.fromJson(jsonString, entity.User.class);
+        user.AddRole(new Role("User"));
+        uf.addUser(user);
+      
       
       
 
