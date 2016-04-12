@@ -4,11 +4,10 @@
 
 angular.module('myApp.factories', []).
   factory('InfoFactory', function () {
-    var info = "Hello World from a Factory";
-    var getInfo = function getInfo(){
-      return info;
+      var factory = {};
+    factory.info = "Hello World from a Factory";
+    factory.dailyRates = function getInfo(){
+      return ($http.get('api/'));
     };
-    return {
-      getInfo: getInfo
-    };
+    return factory;
   });
