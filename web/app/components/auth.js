@@ -44,6 +44,19 @@ angular.module('myApp.security', [])
 
           clearUserDetails($scope);
 
+          $scope.register = function () {
+            $http.post('api/register', $scope.user)
+                    .success(function (data) {
+                      $window.sessionStorage.id_token = data.token;
+                      initializeFromToken($scope, $window.sessionStorage.id_token, jwtHelper);
+                      $location.path("#/view1");
+                    })
+                    .error(function (data) {
+                      delete $window.sessionStorage.id_token;
+                      clearUserDetails($scope);
+                    });
+          };
+          
           $scope.login = function () {
             $http.post('api/login', $scope.user)
                     .success(function (data) {

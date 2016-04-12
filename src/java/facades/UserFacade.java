@@ -80,10 +80,12 @@ public class UserFacade implements IUserFacade {
         EntityManager em = getEntityManager();
         User user = null;
         try{
-            Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :id");
-            query.setParameter("id", Integer.parseInt(id));
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :id", User.class);
+            query.setParameter("id", id);
             user = (User) query.getSingleResult();
+            user.RemoveRoles();
             em.getTransaction().begin();
+            em.merge(user);
             em.remove(user);
             em.getTransaction().commit();
         }finally{
