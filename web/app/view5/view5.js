@@ -10,7 +10,9 @@ angular.module('myApp.view5', ['ngRoute'])
 }])
 
 .controller('View5Ctrl', ['$http', '$scope', 'currencyFactory', function($http,$scope, currencyFactory) {
-
+    $scope.fromCurrency = "";
+    $scope.toCurrency = "";
+    $scope.amount = 0;
     $scope.rates = [];
     $scope.status = "Connecting...";
     $scope.status = currencyFactory.status;
