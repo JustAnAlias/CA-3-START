@@ -1,9 +1,10 @@
 <div>
-    <select name="from_currency" ng-model="fromCurrency">
-        <option ng-repeat="currency in currencies">{{currency.description}}</option>
+    <select ng-model="fromCurrencySelected" ng-change="setFromCurrency(fromCurrencySelected)" 
+            data-ng-options="currency as currency.description for currency in currencies">
+      <option value="">Select Currency</option>
     </select>
-    <select name="to_currency" ng-model="toCurrency">
-        <option ng-repeat="currency in currencies">{{currency.description}}</option>
-    </select><br>
-    <input type="text" ng-model="amount"><input type="text" ng-model="calculatedValue" disabled="true">
+    <select ng-model="toCurrencySelected" ng-change="setToCurrency(toCurrencySelected)" 
+            data-ng-options="currency as currency.description for currency in currencies">
+      <option value="">Select Currency</option>
+      <input type="text" ng-model="amount" ng-change="calculate(amount)"><input type="text" ng-model="calculatedValue" disabled="true">
 </div>

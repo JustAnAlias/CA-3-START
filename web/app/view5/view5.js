@@ -12,20 +12,22 @@ angular.module('myApp.view5', ['ngRoute'])
         .controller('View5Ctrl', ['$http', '$scope', 'CurrencyFactory', function ($http, $scope, CurrencyFactory) {
 //                $scope.conversions = {"Danish Kroner": 1};
 //                        $scope.status = CurrencyFactory.status;
-                $scope.amount = 0;
                 $scope.calculatedValue = 0;
                 $scope.fromCurrency = null;
+                $scope.setFromCurrency = function(val){
+                    $scope.fromCurrency = val;
+                };
                 $scope.toCurrency = null;
+                $scope.setToCurrency = function(val){
+                    $scope.toCurrency = val;
+                };
                 $scope.currencies = [];
                 CurrencyFactory.getData().success(function (data) {
                     $scope.currencies = data;
-//                    for (var i = 0; i<data.length; i++) {
-//                        $scope.conversions.create(data.description, data.rate);
-//                    }
-                    
-//                    console.log($scope.conversions);
                 });
-                $scope.calc = function () {
-                    $scope.calculatedValue = $scope.amount * $scope.fromCurrency * $scope.toCurrency;
+                
+                $scope.calculate = function(val){
+                    $scope.calculatedValue = val * $scope.fromCurrency.rate / $scope.toCurrency.rate;
                 };
+                
             }]);
