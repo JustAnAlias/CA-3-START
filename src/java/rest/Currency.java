@@ -17,6 +17,7 @@ import java.util.TimeZone;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -49,6 +50,17 @@ public class Currency {
             ratesJson.add(new JsonParser().parse(gson.toJson(rate)));
         }
         return Response.status(Response.Status.OK).entity(ratesJson.toString()).type(MediaType.APPLICATION_JSON).build();
+    }
+    
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("calculator/{amount}/{from}/{to}")
+    public Response getExchangedValue(@PathParam("amount") double amount, @PathParam("from") String from, @PathParam("to") String to){
+        Calendar yesterday = Calendar.getInstance(TimeZone.getTimeZone("Europe/Copenhagen"));
+        yesterday.add(Calendar.DATE, -1);
+        
+        String result = "" + cf.convertCurrency(amount, from, to, yesterday.getTime());
+        return Response.status(Response.Status.OK).entity(result).type(MediaType.TEXT_PLAIN).build();
     }
     
     @GET
