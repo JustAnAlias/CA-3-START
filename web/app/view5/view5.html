@@ -6,5 +6,5 @@
     <select ng-model="toCurrencySelected" ng-change="setToCurrency(toCurrencySelected)" 
             data-ng-options="currency as currency.description for currency in currencies">
       <option value="">Select Currency</option>
-      <input type="text" ng-model="amount" ng-change="calculate(amount)"><input type="text" ng-model="calculatedValue" disabled="true">
+      <input type="text" ng-model="amount" ng-change="calculate(amount)"><input type="text" ng-model="calculatedValue | number:2" disabled="true">
 </div>
