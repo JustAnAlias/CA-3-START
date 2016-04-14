@@ -8,7 +8,9 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import entity.Role;
 import facades.UserFacade;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -39,14 +41,17 @@ public class AdminApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("users")
-    public Response getTodaysUsers(){
-        List<entity.User> users = uf.getAllUsers();
-        JsonArray usersJson = new JsonArray();
-        for (entity.User u : users) {
-            usersJson.add(new JsonParser().parse(gson.toJson(u)));
+    public String getMembers() {    
+        JsonArray res = new JsonArray();
+        List<entity.User> users = uf.getUsers();
+        for (entity.User user : users) {
+            JsonObject js1 = new JsonObject();
+            js1.addProperty("userName", user.getUserName());
+            res.add(js1);
         }
-        return Response.status(Response.Status.OK).entity(usersJson.toString()).type(MediaType.APPLICATION_JSON).build();
-    }
+        return gson.toJson(res);
+
+    }    
     
     @DELETE
     @Produces("text/plain") 

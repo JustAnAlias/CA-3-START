@@ -23,7 +23,7 @@ public class User implements Serializable, IUser {
   @Id
   private String userName;
   
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany
   @JoinTable(name = "SystemUser_USERROLE", joinColumns = {
   @JoinColumn(name = "userName", referencedColumnName = "userName")}, inverseJoinColumns = {
   @JoinColumn(name = "roleName")})
