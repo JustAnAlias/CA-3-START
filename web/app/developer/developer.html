@@ -1,0 +1,12 @@
+<div>
+    <uib-accordion>
+        <uib-accordion-group ng-repeat="entry in documentation | orderBy: entry.number" >
+            <uib-accordion-heading>
+                {{entry.header}} <sup>entry.number</sup>
+            </uib-accordion-heading>
+            <ul>
+                <p style="white-space:pre-wrap;"> {{entry.text}} </p>
+            </ul>
+        </uib-accordion-group>
+    </uib-accordion>
+</div>

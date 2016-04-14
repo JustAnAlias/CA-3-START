@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="rate in rates">
+        <tr ng-repeat="rate in rates | orderBy: rate.code">
             <td>{{ rate.code }}</td>
             <td>{{ rate.description }}</td>
             <td>{{ rate.rate }}</td>

@@ -1,7 +1,9 @@
 package facades;
 
+import entity.Role;
 import security.IUserFacade;
 import entity.User;
+import exceptions.UserAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -103,6 +105,27 @@ public class UserFacade implements IUserFacade {
         }
         catch(Exception e){
             System.out.println("something went wrong persisting the user in the DB");
+        }
+        finally {
+            em.close();
+        }
+    }
+    
+    public void editUser(User user) throws UserAlreadyExistsException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            User oldUser = em.find(User.class, user.getUserName());
+            oldUser.RemoveRoles();
+            for (Role role : user.getRoles()) {
+                oldUser.AddRole(role);
+            }
+            oldUser.setPassword(user.getPassword());
+            em.merge(oldUser);
+            em.getTransaction().commit();
+        }
+        catch(Exception e){
+            throw new UserAlreadyExistsException(user.getUserName());
         }
         finally {
             em.close();

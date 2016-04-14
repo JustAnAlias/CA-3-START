@@ -84,24 +84,31 @@ public class CurrencyFacade {
         cache = newRates;
     }
     
-    public double convertCurrency(double amount, String from, String to){
+    public double convertCurrency(double amount, String from, String to, Date date){
+        List<CurrencyRate> rates = getCurrencyRatesByDate(date);
         double res = 0;
-        CurrencyRate fromCurrency = null;
-        CurrencyRate toCurrency = null;
-        for (int i = 0; i < cache.size(); i++) {
-            if (cache.get(i).getCode().equals(from)){
-                fromCurrency = cache.get(i);
-            }
-            if (cache.get(i).getCode().equals(to)){
-                toCurrency = cache.get(i);
-            }
-        }
+        System.out.println("trying to convert from " + from + " to " + to);
+        CurrencyRate fromCurrency = getCurrencyFromCode(rates, from);
+        System.out.println("fromCurrency is now: " + fromCurrency.getDesc());
+        CurrencyRate toCurrency = getCurrencyFromCode(rates, to);
+        System.out.println("toCurrency is now: " + toCurrency.getDesc());
         double inReferenceCurrency = toReferenceCurrency(amount, fromCurrency.getRate());
-        return inReferenceCurrency * toCurrency.getRate();
+        return inReferenceCurrency / toCurrency.getRate();
     }
     
     public double toReferenceCurrency(double amount, double rate){
         double result = amount * rate;
         return result;
     }
+    
+    private CurrencyRate getCurrencyFromCode(List<CurrencyRate> rates, String code){
+        System.out.println("the size of the rates is: " + rates.size());
+        for (CurrencyRate c : rates) {
+            if(c.getCode().equals(code)){
+                return c;
+            }
+        }
+        return null;
+    }
+    
 }
