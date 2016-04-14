@@ -12,8 +12,10 @@ import com.google.gson.JsonParser;
 import facades.UserFacade;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -54,6 +56,16 @@ public class AdminApi {
     public Response deleteUsers(@PathParam("id") String id){
         uf.deleteUserByID(id);
         return Response.status(Response.Status.OK).build();
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("users/add")
+    public Response addUser(String jsonString){
+        entity.User newUser = gson.fromJson(jsonString, entity.User.class);
+        uf.addUser(newUser);
+        return Response.status(Response.Status.OK).entity("User " + newUser.getUserName() + " added").build();
     }
     
 }    

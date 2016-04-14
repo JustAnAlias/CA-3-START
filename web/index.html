@@ -27,6 +27,7 @@
     <script src="app/view4/view4.js"></script>
     <script src="app/view5/view5.js"></script>
     <script src="app/admin/admin.js"></script>
+    <script src="app/developer/developer.js"></script>
     <script src="app/register/register.js"></script> 
     <script src="app/components/auth.js"></script>
     <script src="app/components/filters.js"></script>
@@ -62,6 +63,7 @@
               <li ng-show="isAuthenticated"><a href="#/view4">Exchange Rate Info</a></li>
               <li ng-show="isAuthenticated"><a href="#/view5">Currency Conversion</a></li>
               <li ng-show="isAdmin"><a href="#/admin">All Users</a></li>
+              <li ng-show="isAuthenticated"><a href="#/developer">Developer Options</a></li>
             </ul>
             <div>
             <form class="navbar-form navbar-right" role="form" ng-show="!isAuthenticated" ng-submit="login()"  >

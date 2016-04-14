@@ -26,6 +26,9 @@ angular.module('myApp.view5', ['ngRoute'])
                 CurrencyFactory.getData().success(function (data) {
                     $scope.currencies = data;
                     $scope.currencies.push({code: "DKK", rate: 100, description: "Danish Kroner"});
+                    $scope.currencies.sort(function(a,b){
+                        return a.description - b.description;
+                    });
                 });
 
                 $scope.calculate = function (val) {

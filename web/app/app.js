@@ -15,6 +15,7 @@ angular.module('myApp', [
   'myApp.view5',
   'myApp.register',
   'myApp.admin',
+  'myApp.developer',
   // Components
   'myApp.filters',
   'myApp.directives',

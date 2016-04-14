@@ -22,4 +22,20 @@ angular.module('myApp.factories', []).
             return {
                 getInfo: getInfo
             };
+        }).factory('DocumentationFactory', function ($http) {
+            var factory = {};
+            factory.getData = function(){ // controller prints undefined when trying to print results..
+                return $http({
+                    method: 'GET',
+                    url: 'api/documentation'
+                });
+            };
+            factory.addData = function(entry){
+                $http({ method: 'POST',
+                        url: 'api/documentation',
+                        headers: {'Content-Type': 'application/json'},
+                        data: entry
+                    });
+            };
+            return factory;
         });

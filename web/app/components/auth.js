@@ -74,6 +74,7 @@ angular.module('myApp.security', [])
             $scope.isAuthenticated = false;
             $scope.isAdmin = false;
             $scope.isUser = false;
+            $scope.isDeveloper = false;
             delete $window.sessionStorage.id_token;
             $location.path("/view1");
         };
@@ -141,6 +142,9 @@ function initializeFromToken($scope, token, jwtHelper) {
         }
         if (role === "User") {
             $scope.isUser = true;
+        }
+        if (role === "Developer") {
+            $scope.isDeveloper = true;
         }
     });
 }
