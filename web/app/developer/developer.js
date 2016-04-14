@@ -10,19 +10,22 @@ angular.module('myApp.developer', ['ngRoute'])
             }])
 
         .controller('developerCtrl', ['$http', '$scope', 'DocumentationFactory', function ($http, $scope, DocumentationFactory) {
-                var entry = {};
-                $scope.number = 0;
-                $scope.header = "";
-                $scope.text = "";
+                $scope.newEntry = {};
+                $scope.newEntry.number = 0;
+                $scope.newEntry.header = "";
+                $scope.newEntry.text = "";
                 $scope.documentation = [];
                 DocumentationFactory.getData().success(function (data) {
                     $scope.documentation = data;
                 });
                 $scope.addDocumentEntry = function(){
-                    DocumentationFactory.addData(entry);
+                    DocumentationFactory.addData($scope.newEntry);
+                    $scope.documentation.push($scope.newEntry)
+                    
                 };
                 $scope.removeEntry = function(entry){
                     DocumentationFactory.removeData(entry);
+                    
                 };
             }]);
 

@@ -1,4 +1,14 @@
 <div>
+    <div style="width: 40%">
+        <h3>tilføj afsnit:</h3>
+        Overskrift:<br> <input type="text" ng-model="newEntry.header"><br>
+        afsnit nummer:<br>
+        <input type="number" ng-model="newEntry.number"><br>
+        </div>
+        Teksten:
+        <textarea ng-model="newEntry.text" style="width: 100%; height: 200px;">test</textarea>
+        <input type="button" ng-click="addDocumentEntry();" value="Submit">
+    
     <uib-accordion>
         <uib-accordion-group ng-repeat="entry in documentation | orderBy: entry.number" >
             <uib-accordion-heading>
