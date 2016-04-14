@@ -49,6 +49,15 @@ public class AdminApi {
         for (entity.User user : users) {
             JsonObject js1 = new JsonObject();
             js1.addProperty("userName", user.getUserName());
+            
+            JsonArray roles = new JsonArray();
+            List<Role> r1 = user.getRoles();
+            for (Role r : r1) {
+                JsonObject js2 = new JsonObject();
+                js2.addProperty("role", r.getRoleName());
+                roles.add(js2);
+            }
+            js1.add("roles", roles);
             res.add(js1);
         }
         return gson.toJson(res);
