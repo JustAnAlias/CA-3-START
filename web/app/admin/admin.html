@@ -3,13 +3,13 @@
     <thead>
         <tr>
           <th>Name<th/>  
-           
+          <th></th>
            </tr>   
           </thead>
           <tbody>
               <tr ng-repeat="user in users">   
                   <th>{{user.userName}}</th>
-                  <th><button ng-click="deleteUser(user.userName)" >Delete</button></th>              
+                  <th><button class="btn-danger" ng-click="deleteUser(user.userName)" >Delete</button></th>              
              </tr> 
           </tbody>  
         

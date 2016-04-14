@@ -58,12 +58,11 @@
               <li><a href="#/view4">Using the Seed</a></li>
               -->
               <li><a href="#/view1">Home</a></li>
-              <li><a href="#/view2">Documentation</a></li>
+              <li><a href="#/developer">Documentation</a></li>
               <li ng-show="isAuthenticated"><a href="#/view3">Company Info</a></li>
               <li ng-show="isAuthenticated"><a href="#/view4">Exchange Rate Info</a></li>
               <li ng-show="isAuthenticated"><a href="#/view5">Currency Conversion</a></li>
               <li ng-show="isAdmin"><a href="#/admin">All Users</a></li>
-              <li ng-show="isAuthenticated"><a href="#/developer">Developer Options</a></li>
             </ul>
             <div>
             <form class="navbar-form navbar-right" role="form" ng-show="!isAuthenticated" ng-submit="login()"  >

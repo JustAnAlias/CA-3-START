@@ -1,16 +1,16 @@
-<div>
+<div  ng-controller="AppLoginCtrl">
     <uib-accordion>
         <uib-accordion-group ng-repeat="entry in documentation | orderBy: 'number'" >
             <uib-accordion-heading>
                 {{entry.header}} <sup>{{entry.number}}</sup>
             </uib-accordion-heading>
-            <button class="btn-danger pull-right" ng-click="removeEntry(entry.id);">x</button>
+            <button class="btn-danger pull-right" ng-show="isAdmin" ng-click="removeEntry(entry.id);">x</button>
                 <p style="white-space:pre-wrap;"> {{entry.text}} </p>
         </uib-accordion-group>
     </uib-accordion>
 
 
-    <div  ng-controller="AppLoginCtrl" ng-show="isAdmin">
+    <div ng-show="isAdmin">
     <div style="width: 40%">
         <h3>tilføj afsnit:</h3>
         Overskrift:<br> <input type="text" ng-model="newEntry.header"><br>
