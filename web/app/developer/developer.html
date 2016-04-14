@@ -11,7 +11,7 @@
     </uib-accordion>
 
 
-    <div ng-show="isAdmin">
+    <div  ng-controller="AppLoginCtrl" ng-show="isAdmin">
     <div style="width: 40%">
         <h3>tilføj afsnit:</h3>
         Overskrift:<br> <input type="text" ng-model="newEntry.header"><br>
