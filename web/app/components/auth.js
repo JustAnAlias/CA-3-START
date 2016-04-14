@@ -48,7 +48,7 @@ angular.module('myApp.security', [])
                 data: JSON.stringify($scope.user)
             }).
             success(function(data, status, headers, config) {
-                alert($scope.user.userName + " has sucessefully registered!");
+                alert($scope.user.username + " has sucessefully registered!");
             }).
             error(function(data, status, headers, config) {
                 "Something weng wrong try again."
