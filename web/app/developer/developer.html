@@ -4,7 +4,7 @@
             <uib-accordion-heading>
                 {{entry.header}} <sup>{{entry.number}}</sup>
             </uib-accordion-heading>
-            <button class="btn-danger pull-right" ng-click="removeEntry();">x</button>
+            <button class="btn-danger pull-right" ng-click="removeEntry(entry.id);">x</button>
                 <p style="white-space:pre-wrap;"> {{entry.text}} </p>
         </uib-accordion-group>
     </uib-accordion>

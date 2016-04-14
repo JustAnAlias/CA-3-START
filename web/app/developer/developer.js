@@ -24,8 +24,8 @@ angular.module('myApp.developer', ['ngRoute'])
                     $route.reload();
                     
                 };
-                $scope.removeEntry = function(entry){
-                    DocumentationFactory.removeData(entry);
+                $scope.removeEntry = function(entryId){
+                    DocumentationFactory.removeData(entryId);
                     $route.reload();
                 };
             }]);

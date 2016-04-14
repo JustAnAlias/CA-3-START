@@ -37,5 +37,10 @@ angular.module('myApp.factories', []).
                         data: entry
                     });
             };
+            factory.removeData = function(id){
+                $http({method: 'DELETE',
+                    url: 'api/documentation/'+ id
+                });
+            };
             return factory;
         });
