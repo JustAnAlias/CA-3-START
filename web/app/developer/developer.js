@@ -9,7 +9,7 @@ angular.module('myApp.developer', ['ngRoute'])
                 });
             }])
 
-        .controller('developerCtrl', ['$http', '$scope', 'DocumentationFactory', function ($http, $scope, DocumentationFactory) {
+        .controller('developerCtrl', ['$http', '$scope', '$route', 'DocumentationFactory', function ($http, $scope, $route, DocumentationFactory) {
                 $scope.newEntry = {};
                 $scope.newEntry.number = 0;
                 $scope.newEntry.header = "";
@@ -21,6 +21,7 @@ angular.module('myApp.developer', ['ngRoute'])
                 $scope.addDocumentEntry = function(){
                     DocumentationFactory.addData($scope.newEntry);
                     $scope.documentation.push($scope.newEntry)
+                    $route.reload();
                     
                 };
                 $scope.removeEntry = function(entry){
