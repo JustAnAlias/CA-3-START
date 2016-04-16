@@ -1,0 +1,44 @@
+This documentation is meant for testing purposes
+
+Testing the Admin API
+
+Create User
+relative url: api/admin/users/add
+method: POST
+data:   {
+            userName: 'TestUser31',
+            password: 'SomeMightyPassword',
+            roles: [
+                {role: 'Admin'},
+                {role: 'User'}
+            ]
+        }
+
+
+For the rest of the admin/user part, we will assume the added user has the id: 111
+When used it will be in brackets like these {}
+Read User
+relative url: api/admin/users/{111}
+method: GET
+data:
+U
+pdate User
+relative url: api/admin/users/{111}
+method:
+data: same as in Create User
+*Usernames can not be changed
+
+Delete User
+relative url: api/admin/users/{111}
+method: DELETE
+data:
+
+Testing the _____ API
+
+relative url: 
+method:
+data:
+
+relative url: 
+method:
+data:

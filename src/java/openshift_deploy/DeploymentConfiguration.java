@@ -30,7 +30,7 @@ import security.PasswordStorage;
 public class DeploymentConfiguration implements ServletContextListener {
 
   public static String PU_NAME = "PU-Local";
-//  private ScheduledExecutorService scheduler;
+  private ScheduledExecutorService scheduler;
 
     @Override
   public void contextInitialized(ServletContextEvent sce) {
@@ -47,6 +47,10 @@ public class DeploymentConfiguration implements ServletContextListener {
       ServletContext context = sce.getServletContext();
       EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
       EntityManager em = emf.createEntityManager();
+      
+      scheduler = Executors.newSingleThreadScheduledExecutor();
+      scheduler.scheduleAtFixedRate(new Task(new CurrencyFacade()), 0, 1, TimeUnit.DAYS);
+        
       
       //This flag is set in Web.xml -- Make sure to disable for a REAL system
       boolean makeTestUsers = context.getInitParameter("makeTestUsers").toLowerCase().equals("true");

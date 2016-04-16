@@ -47,11 +47,11 @@ public class Task implements Runnable {
             }
             cf.setNewCache(newRates);
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
-            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

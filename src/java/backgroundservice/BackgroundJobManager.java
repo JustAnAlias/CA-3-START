@@ -6,9 +6,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+//import javax.servlet.annotation.WebListener;
 
-@WebListener
+//@WebListener
 public class BackgroundJobManager implements ServletContextListener {
 
     private ScheduledExecutorService scheduler;
